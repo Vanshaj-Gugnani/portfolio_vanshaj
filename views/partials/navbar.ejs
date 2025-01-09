@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Link to Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base navbar styles */
+        #navbar {
+            height: 80px; /* Initial height */
+            transition: all 0.5s ease;
+        }
+
+        /* Scrolled state */
+        #navbar.scrolled {
+            height: 55px; /* Compressed height */
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar" class="navbar fixed top-0 z-50 w-full bg-white">
+        <div class="navbar-start">
+            <!-- Mobile Menu -->
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
+                </label>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52">
+                    <li><a href="#home" class="hover:text-blue-500">Home</a></li>
+                    <li><a href="#projects" class="hover:text-blue-500">Projects</a></li>
+                    <li><a href="#about" class="hover:text-blue-500">About</a></li>
+                    <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Logo -->
+            <a class="btn btn-ghost normal-case text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500" style="font-family: 'Poppins', sans-serif;">
+                Vansh.
+            </a>
+        </div>
+        <!-- Desktop Menu -->
+        <div class="navbar-end hidden lg:flex">
+            <ul class="menu menu-horizontal px-1 space-x-4">
+                <li><a href="#home" class="text-gray-800 hover:text-blue-500">Home</a></li>
+                <li><a href="#projects" class="text-gray-800 hover:text-blue-500">Projects</a></li>
+                <li><a href="#about" class="text-gray-800 hover:text-blue-500">About</a></li>
+                <li><a href="#contact" class="text-gray-800 hover:text-blue-500">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

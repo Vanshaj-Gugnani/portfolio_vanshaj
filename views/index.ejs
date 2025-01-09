@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio</title>
+    <link href="/dist/styles.css" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 100%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(60px);
+            opacity: 0.2;
+            z-index: 2;
+            animation: float 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .blob1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .blob2 {
+            top: 45%;
+            left: 25%;
+            animation-delay: -1s;
+        }
+
+        .blob3 {
+            bottom: 10%;
+            left: 20%;
+            animation-delay: -2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -50px) rotate(15deg);
+            }
+            66% {
+                transform: translate(-20px, 30px) rotate(-10deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero-content .lg\:w-1\/2 {
+                width: 100%;
+            }
+
+            .blob {
+                display: none; /* Hide blobs on smaller screens */
+            }
+
+            .absolute.left-10 {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 20%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .text-5xl {
+                font-size: 2.5rem; /* Adjust font size for smaller screens */
+            }
+
+            .text-xl {
+                font-size: 1.25rem; /* Adjust font size for smaller screens */
+            }
+
+            .btn {
+                width: 100%; /* Make buttons full width */
+                margin-bottom: 1rem; /* Add spacing between buttons */
+            }
+        }
+
+        /* Additional styles for cards */
+        .card {
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navbar -->
+    <div class=" inset-0 overflow-hidden">
+        <svg class="blob blob1" width="400" height="400" viewBox="0 0 200 200">
+            <path fill="#ff69b4" d="M47.5,-61.7C59.9,-52.8,67.5,-35.9,71.6,-18.1C75.7,-0.3,76.3,18.3,69.1,33.5C61.9,48.7,47,60.4,30.2,67.7C13.5,75,-5.1,77.9,-22.1,72.9C-39.1,67.9,-54.5,55,-65.1,38.6C-75.7,22.2,-81.5,2.3,-77.8,-15.6C-74.1,-33.5,-60.9,-49.4,-45.3,-57.5C-29.7,-65.7,-11.6,-66.1,3.6,-70.8C18.8,-75.5,35.1,-70.5,47.5,-61.7Z" transform="translate(100 100)" />
+        </svg>
+        <svg class="blob blob2" width="350" height="350" viewBox="0 0 200 200">
+            <path fill="#ff1493" d="M54.6,-67.3C69.7,-55.3,80.4,-37,83.2,-17.8C86,1.4,80.8,21.4,70.3,37.7C59.8,54,44,66.5,25.8,72.7C7.6,78.9,-13,78.8,-31.1,71.9C-49.2,65,-64.7,51.3,-73.4,34C-82.1,16.7,-84,-4.1,-77.1,-21.1C-70.2,-38.1,-54.6,-51.3,-39,-61.3C-23.4,-71.3,-7.8,-78.1,7.4,-77.1C22.7,-76.1,39.5,-79.3,54.6,-67.3Z" transform="translate(100 100)" />
+        </svg>
+        <svg class="blob blob3" width="300" height="300" viewBox="0 0 200 200">
+            <path fill="#db7093" d="M44.1,-57.4C55.9,-47.3,63.5,-32.2,67.7,-15.8C71.9,0.6,72.7,18.3,65.8,32.3C58.9,46.2,44.3,56.4,28.7,62.3C13,68.2,-3.7,69.8,-20.9,65.9C-38.1,62,-55.8,52.6,-65.6,37.8C-75.4,23,-77.3,2.8,-73.1,-15.4C-68.9,-33.5,-58.6,-49.6,-44.6,-59.3C-30.5,-69,-15.3,-72.3,0.6,-73C16.4,-73.8,32.3,-67.5,44.1,-57.4Z" transform="translate(100 100)" />
+        </svg>
+    </div>
+
+    <div class="overflow-x-hidden absolute">
+        <%- include('partials/navbar.ejs') %>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero min-h-screen bg-white pt-16 relative">
+        <!-- Left side social icons -->
+        <div class="absolute left-10 top-[52%] transform -translate-y-1/2 flex flex-col gap-2 hidden lg:block">
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/vanshaj-gugnani-0847792bb" target="_blank" class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
+                <img src="/images/linkedin.png" alt="LinkedIn" class="">
+            </a>
+            <!-- GitHub -->
+            <a href="https://github.com/vanshaj-gugnani" target="_blank" class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
+                <img src="/images/github.png" alt="GitHub" class="">
+            </a>
+            <!-- Email -->
+            <a href="mailto:vanshajgugnani@gmail.com" class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
+                <img src="/images/gmail.png" alt="Email" class="">
+            </a>
+        </div>
+        
+        <!-- Existing content -->
+        <div class="hero-content flex-col lg:flex-row-reverse">
+            <div class="lg:w-1/2">
+                <div class="avatar placeholder">
+                    <img src="/images/vanshaj.png" alt="Vanshaj" class=" text-white rounded-full w-48 h-48">
+                </div>
+            </div>
+            <div class="lg:w-1/2">
+                <h1 class="text-5xl font-bold leading-tight">
+                    <span class="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent inline-block py-2">
+                        Vanshaj Gugnani
+                    </span>
+                </h1>
+                <p class="py-6 text-xl text-gray-700">Full Stack Developer & Creative Designer</p>
+                <div class="flex gap-4">
+                    <button class="btn btn-primary">Download CV</button>
+                    <button class="btn btn-outline">Contact Me</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="card bg-white shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <figure><div class="w-full h-70 bg-blue-100">
+                        <img src="/images/monster-demo.png" alt="">
+                    </div></figure>
+                    <div class="card-body">
+                        <h3 class="card-title text-gray-800">Monster Arena👾</h3>
+                        <p class="text-gray-600">A simple game made using <strong>Express, Socket.io, MongoDB, Postgres, Tailwindcss, DaisyUI, EJS, bcypt, Client Sessions</strong> and more.
+                            Here you can unleash you inner creativity, create some unique monsters with unique powers and fight against other monsters within the community. The winner will be decided by the voting. create you account and joint the battle.
+                        </p>
+                        <div class="card-actions justify-end">
+
+
+                            <!-- <a href="https://github.com/Vanshaj-Gugnani/Monster-Arena-" target="_blank" class="btn btn-neutral btn-sm py-2 px-4 ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-2">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                                </svg>
+                                GitHub
+                            </a> -->
+                            
+                            <a href="https://github.com/Vanshaj-Gugnani/Monster-Arena-" class="rounded-md bg-gray-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="mr-2">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                GitHub
+                            </a>
+
+                            <a href="https://monster-arena-gilt.vercel.app/" class="rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
+                                View Project
+                            </a>
+
+                            <!-- <a href="https://monster-arena-gilt.vercel.app/" target="_blank" class="btn btn-primary btn-sm">View Project</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="card bg-white shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <figure><div class="w-full h-48 bg-purple-100">
+                        <img src="/images/lost&found.png" alt="lost-found">
+                    </div></figure>
+                    <div class="card-body">
+                        <h3 class="card-title text-gray-800">Lost&Found</h3>
+                        <p class="text-gray-600">
+                            A simple game made using <strong>NodeJS, FireBase, TailwindUI,
+                            </strong>and more.
+                            This app allows users to report lost and found items and then the aplication trys to find them using <strong>Dice Coefficient Algorithm</strong> and <strong>Open Street Maps Geolocation</strong>, and sends 
+                            notifications on their mobile Phones and emails using <strong>Twilio</strong> and <strong>NodeMailer</strong>.
+                        </p>
+
+                        
+                        <div class="card-actions justify-end">
+                            <a  href="https://lost-and-found-black.vercel.app/" target="_blank" class="btn btn-primary btn-sm">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 3 -->
+                <div class="card bg-white shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <figure><div class="w-full h-48 bg-indigo-100">
+                        <img src="/images/playpause.png" alt="play-pause">
+                    </div></figure>
+                    <div class="card-body">
+                        <h3 class="card-title text-gray-800">PlayPause</h3>
+                        <p class="text-gray-600">A web extension that allows you to pause the video whenever the tab is changed or it goes out of the scope, made entirely on <strong>JavaScript using DOM Manipulation</strong></p>
+                        <div class="card-actions justify-end">
+                            <a href="https://github.com/Vanshaj-Gugnani/PlayPause" target="_blank" class="btn btn-neutral btn-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-2">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                                </svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="card bg-white shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <figure><div class="w-full h-48 bg-indigo-100"></div></figure>
+                    <div class="card-body">
+                        <h3 class="card-title text-gray-800">Hand Tracking</h3>
+                        <p class="text-gray-600">coming soon</p>
+                        <div class="card-actions justify-end">
+                            <button class="btn btn-primary btn-sm">View Project</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl font-bold mb-6 text-gray-800">About Me</h2>
+                    <p class="mb-4 text-gray-600">I'm a passionate developer and have a hands on experience with programming languages like c, c++, Python, Java, JavaScript, HTML, css, SQL, Git and many more.</p>
+                    <p class="mb-6 text-gray-600">My journey in tech started with a curiosity for creating things that make a difference.</p>
+                    <div class="stats shadow bg-white">
+                        <div class="stat">
+                            <div class="stat-title text-gray-600">Projects</div>
+                            <div class="stat-value text-blue-500">10+</div>
+                        </div>
+                        
+                        <div class="stat">
+                            <div class="stat-title text-gray-600">Experience</div>
+                            <div class="stat-value text-blue-500">2yr+</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="card bg-white shadow-lg">
+                            <div class="card-body items-center text-center">
+                                <h3 class="card-title text-blue-500">Frontend</h3>
+                                <p class="text-gray-600">React</p>
+                            </div>
+                        </div>
+                        <div class="card bg-white shadow-lg">
+                            <div class="card-body items-center text-center">
+                                <h3 class="card-title text-blue-500">Backend</h3>
+                                <p class="text-gray-600">Node.js, Python, Java</p>
+                            </div>
+                        </div>
+                        <div class="card bg-white shadow-lg">
+                            <div class="card-body items-center text-center">
+                                <h3 class="card-title text-blue-500">Database</h3>
+                                <p class="text-gray-600">MongoDB, PostgreSQL, firebase</p>
+                            </div>
+                        </div>
+                        <div class="card bg-white shadow-lg">
+                            <div class="card-body items-center text-center">
+                                <h3 class="card-title text-blue-700">DevOps</h3>
+                                <p class="text-gray-600">Docker, AWS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Get In Touch</h2>
+            <div class="max-w-lg mx-auto">
+                <div class="form-control mb-4">
+                    <label class="label">
+                        <span class="label-text text-gray-600">Name</span>
+                    </label>
+                    <input type="text" placeholder="Your Name" class="input input-bordered w-full bg-white" />
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label">
+                        <span class="label-text text-gray-600">Email</span>
+                    </label>
+                    <input type="email" placeholder="your.email@example.com" class="input input-bordered w-full bg-white" />
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label">
+                        <span class="label-text text-gray-600">Message</span>
+                    </label>
+                    <textarea class="textarea textarea-bordered h-32 bg-white" placeholder="Your message"></textarea>
+                </div>
+                <button class="btn btn-primary w-full">Send Message</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer footer-center p-10 bg-gray-50 text-gray-600 rounded">
+        <div class="grid grid-flow-col gap-4">
+            <a class="link link-hover">About</a> 
+            <a class="link link-hover">Projects</a> 
+            <a class="link link-hover">Contact</a>
+        </div> 
+        <div>
+            <div class="grid grid-flow-col gap-4">
+                <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg></a> 
+                <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path></svg></a> 
+                <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
+            </div>
+        </div> 
+        <div>
+            <p>Copyright © 2024 - All rights reserved</p>
+        </div>
+    </footer>
+</body>
+</html>
