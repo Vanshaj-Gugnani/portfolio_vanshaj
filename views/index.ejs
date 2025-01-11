@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Portfolio</title>
+    <title>Portfolio</title>
     <link href="/dist/styles.css" rel="stylesheet">
     <style>
         html, body {
@@ -137,44 +137,53 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero min-h-screen bg-white pt-16 relative">
-        <!-- Left side social icons -->
-        <div class="absolute left-10 top-[52%] transform -translate-y-1/2 flex flex-col gap-2 hidden lg:block">
-            <!-- LinkedIn -->
-            <a href="https://linkedin.com/in/vanshaj-gugnani-0847792bb" target="_blank" class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
-                <img src="/images/linkedin.png" alt="LinkedIn" class="">
-            </a>
-            <!-- GitHub -->
-            <a href="https://github.com/vanshaj-gugnani" target="_blank" class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
-                <img src="/images/github.png" alt="GitHub" class="">
-            </a>
-            <!-- Email -->
-            <a href="mailto:vanshajgugnani@gmail.com" class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
-                <img src="/images/gmail.png" alt="Email" class="">
-            </a>
-        </div>
-        
-        <!-- Existing content -->
+    <section id="home" class="hero min-h-screen bg-white pt-16">
         <div class="hero-content flex-col lg:flex-row-reverse">
-            <div class="lg:w-1/2">
+            <!-- Profile Image -->
+            <div class="lg:w-[60%]">
                 <div class="avatar placeholder">
-                    <img src="/images/vanshaj.png" alt="Vanshaj" class=" text-white rounded-full w-48 h-48">
+                    <img src="/images/vanshaj.png" alt="Vanshaj" class="text-white rounded-full w-48 h-48">
                 </div>
             </div>
-            <div class="lg:w-1/2">
-                <h1 class="text-5xl font-bold leading-tight">
-                    <span class="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent inline-block py-2">
-                        Vanshaj Gugnani
-                    </span>
-                </h1>
-                <p class="py-6 text-xl text-gray-700">Full Stack Developer & Creative Designer</p>
-                <div class="flex gap-4">
-                    <button class="btn btn-primary">Download CV</button>
-                    <button class="btn btn-outline">Contact Me</button>
+            
+            <!-- Content Container -->
+            <div class="lg:w-2/3 flex flex-col lg:flex-row items-center gap-6">
+                <!-- Social Media Icons - Hidden on mobile -->
+                <div class="hidden lg:flex lg:flex-col gap-2 mt-5">
+                    <!-- LinkedIn -->
+                    <a href="https://linkedin.com/in/vanshaj-gugnani-0847792bb" target="_blank" 
+                       class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
+                        <img src="/images/linkedin.png" alt="LinkedIn">
+                    </a>
+                    <!-- GitHub -->
+                    <a href="https://github.com/vanshaj-gugnani" target="_blank"
+                       class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
+                        <img src="/images/github.png" alt="GitHub">
+                    </a>
+                    <!-- Email -->
+                    <a href="mailto:vanshajgugnani@gmail.com"
+                       class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
+                        <img src="/images/gmail.png" alt="Email">
+                    </a>
+                </div>
+                
+                <!-- Text Content -->
+                <div class="text-center lg:text-left">
+                    <h1 class="text-5xl font-bold leading-tight">
+                        <span class="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent inline-block py-2">
+                            Vanshaj Gugnani
+                        </span>
+                    </h1>
+                    <p class="py-6 text-xl text-gray-700">Full Stack Developer & Creative Designer</p>
+                    <div class="flex gap-4">
+                        <button class="btn btn-primary">Download CV</button>
+                        <button class="btn btn-outline hidden lg:inline-flex">Contact Me</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+    
     
 
     <!-- Projects Section -->
