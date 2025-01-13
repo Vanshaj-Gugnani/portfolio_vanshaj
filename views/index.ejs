@@ -6,6 +6,10 @@
     <title>Portfolio</title>
     <link href="/dist/styles.css" rel="stylesheet">
     <style>
+        body {
+            user-select: none;
+        }
+
         html, body {
             margin: 0;
             padding: 0;
@@ -168,6 +172,74 @@
         opacity: 0;
       }
     }
+    
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+
+
+
+
+    @keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-left2 {
+    animation: slideInLeft 1s ease forwards;
+}
+.animate-left3 {
+    animation: slideInLeft 1.5s ease forwards;
+}
+.animate-left {
+    animation: slideInLeft 0.5s ease forwards;
+}
+
+.fade-in{
+    animation: fadein 2.5s ease forwards;
+}
+
+.animate-right {
+    animation: slideInRight 0.5s ease forwards;
+}
+
+.timeline-item {
+    opacity: 0; /* Initially hidden */
+    transform: translateX(-50px); /* Move them slightly off-screen to the left */
+    transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+}
+
+.timeline-item.animate-left {
+    opacity: 1; /* Make them visible */
+    transform: translateX(0); /* Move them back to their original position */
+}
+
+.timeline-desc {
+    opacity: 0; /* Initially hidden */
+}
     </style>
 </head>
 
@@ -192,59 +264,57 @@
     </div>
 
     <!-- Hero Section -->
+    <% if (success) { %>
+        <div class="alert-container">
+          <div class="alert-box" id="successAlert">
+            <div class="alert-content">
+              <svg class="check-icon" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+              </svg>
+              Message Sent successfully!
+            </div>
+          </div>
+        </div>
+        
+        <script>
+          setTimeout(() => {
+            const alertBox = document.getElementById('successAlert');
+            if (alertBox) {
+              alertBox.style.display = 'none';
+            }
+          }, 3000);
+        </script>
+      <% } %>
+
+
     <section id="home" class="hero min-h-screen bg-white pt-16">
         
-        
-
-        <% if (success) { %>
-            <div class="alert-container">
-              <div class="alert-box" id="successAlert">
-                <div class="alert-content">
-                  <svg class="check-icon" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-                  </svg>
-                  Message Sent successfully!
-                </div>
-              </div>
-            </div>
-            
-            <script>
-              setTimeout(() => {
-                const alertBox = document.getElementById('successAlert');
-                if (alertBox) {
-                  alertBox.style.display = 'none';
-                }
-              }, 3000);
-            </script>
-          <% } %>
-
-
 
         <div class="hero-content flex-col lg:flex-row-reverse">
             <!-- Profile Image -->
             <div class="lg:w-[60%]">
                 <div class="avatar placeholder">
-                    <img src="/images/vanshaj.png" alt="Vanshaj" class="text-white rounded-full w-48 h-48">
+                    <img src="/images/vanshaj.png" alt="Vanshaj" class="text-white rounded-full w-48 h-48 fade-in ">
                 </div>
             </div>
             
             <!-- Content Container -->
             <div class="lg:w-2/3 flex flex-col lg:flex-row items-center gap-6">
                 <!-- Social Media Icons - Hidden on mobile -->
-                <div class="hidden lg:flex lg:flex-col gap-2 mt-5">
+                <div class="hidden lg:flex lg:flex-col gap-2 mt-5 ">
                     <!-- LinkedIn -->
                     <a href="https://linkedin.com/in/vanshaj-gugnani-0847792bb" target="_blank" 
-                       class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
+                       class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 animate-left">
                         <img src="/images/linkedin.png" alt="LinkedIn">
                     </a>
                     <!-- GitHub -->
                     <a href="https://github.com/vanshaj-gugnani" target="_blank"
-                       class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
+                       class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 animate-left2">
                         <img src="/images/github.png" alt="GitHub">
                     </a>
                     <!-- Email -->
                     <a href="mailto:vanshajgugnani@gmail.com"
-                       class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200">
+                       class="btn btn-ghost w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 animate-left3">
                         <img src="/images/gmail.png" alt="Email">
                     </a>
                 </div>
@@ -252,14 +322,14 @@
                 <!-- Text Content -->
                 <div class="text-center lg:text-left">
                     <h1 class="text-5xl font-bold leading-tight">
-                        <span class="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent inline-block py-2">
+                        <span class="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent inline-block py-2 animate-left">
                             Vanshaj Gugnani
                         </span>
                     </h1>
-                    <p class="py-6 text-xl text-gray-700">Full Stack Developer & Designer</p>
+                    <p class="py-6 text-xl text-gray-700 animate left fade-in">Full Stack Developer & Designer</p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <button class="btn btn-primary">Download CV</button>
-                        <a href="#contact" class="btn btn-outline text-black">Contact Me</a>
+                        <button class="btn btn-primary fade-in">Download CV</button>
+                        <a href="#contact" class="btn btn-outline text-black fade-in">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -478,9 +548,9 @@
         <!-- Timeline Items -->
         <div class="space-y-12">
             <% experiences.forEach((experience) => { %>
-                <div class="flex flex-col md:flex-row items-center">
+                <div class="flex flex-col md:flex-row items-center ">
                     <!-- Left Content -->
-                    <div class="flex-1 md:text-right md:pr-8 pb-4 md:pb-0 bg-white" style="z-index: 1;">
+                    <div class="flex-1 md:text-right md:pr-8 pb-4 md:pb-0 bg-white timeline-item" style="z-index: 1;">
                         <h3 class="text-xl font-semibold text-blue-500"><%= experience.title %></h3>
                         <p class="text-gray-600"><%= experience.company %></p>
                         <p class="text-sm text-gray-500"><%= experience.date %></p>
@@ -492,7 +562,7 @@
                     </div>
 
                     <!-- Right Content -->
-                    <div class="flex-1 md:pl-8 pt-4 md:pt-0 relative" style="z-index: 1;">
+                    <div class="flex-1 md:pl-8 pt-4 md:pt-0 relative timeline-desc" style="z-index: 1;">
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <p class="text-gray-600"><%= experience.description %></p>
                         </div>
@@ -544,5 +614,40 @@
             <p>Copyright © 2024 - All rights reserved</p>
         </div>
     </footer>
-</body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const timelineDesc = document.querySelectorAll('.timeline-desc');
+            
+            function checkVisibility() {
+                const windowHeight = window.innerHeight;
+                const triggerPoint = windowHeight * 0.75; // Trigger when the item is 75% in the viewport
+                
+                timelineItems.forEach((item, index) => {
+                    const itemRect = item.getBoundingClientRect();
+                    if (itemRect.top < triggerPoint && itemRect.bottom > 0) {
+                        item.classList.add('animate-left2');
+                        timelineDesc[index].classList.add('fade-in');
+                    }
+                });
+            }
+            
+            // Check visibility on scroll and on load
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // Initial check
+        });
+            
+        window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+
+    // Alternative method for more browser compatibility
+    if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+    }
+    window.onload = function() {
+        window.scrollTo(0, 0);
+    }
+    </script>
+        </body>
 </html>
