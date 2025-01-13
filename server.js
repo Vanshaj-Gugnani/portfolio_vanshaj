@@ -1,27 +1,50 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-
 const axios = require('axios');
+const session = require('express-session');
 require('dotenv').config();
+
+// Set up session middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'your-secret-key', // Better to use environment variable
+  resave: false,
+  saveUninitialized: false,
+  cookie: { 
+    maxAge: 1000 * 60 * 60 * 24 // 24 hours
+  }
+}));
+
 // Set up static files
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', __dirname + '/views');
+
 // Set view engine to EJS
 app.set('view engine', 'ejs');
-const nodemailer = require('nodemailer');
-app.use(express.urlencoded({ extended: true }));
-// Basic route
-app.get('/', (req, res) => {
-  res.render('index');
-});
 
+const nodemailer = require('nodemailer');
+
+// Body parser middleware
+app.use(express.urlencoded({ extended: true }));
+
+// Set up nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'vanshajgugnani@gmail.com', // Your Gmail address
-    pass: 'wnyj jyml qmyb iahf'     // Your Gmail app password
+    user: process.env.EMAIL,
+    pass: process.env.PASS
   }
+});
+
+// Basic route
+app.get('/', (req, res) => {
+  // Get success status from session
+  const success = req.session.success || false;
+  
+  // Clear the success flag after reading it
+  req.session.success = false;
+  
+  res.render('index', { success });
 });
 
 app.post('/send-message', async (req, res) => {
@@ -45,18 +68,15 @@ app.post('/send-message', async (req, res) => {
     // Send email
     await transporter.sendMail(mailOptions);
 
-    // Send success response
-    res.status(200).json({ 
-      success: true, 
-      message: 'Message received and email notification sent' 
-    });
-
+    // Set success in session
+    req.session.success = true;
+    
+    res.redirect('/#contact');
   } catch (error) {
     console.error('Error sending email:', error);
-    res.status(500).json({ 
-      success: false, 
-      message: 'Failed to process message' 
-    });
+    // Optionally set an error message in session
+    req.session.error = 'Failed to send message';
+    res.redirect('/#contact');
   }
 });
 
